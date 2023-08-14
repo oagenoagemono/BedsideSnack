@@ -1,0 +1,30 @@
+body {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.App-container {
+  color: white;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+main {
+  padding: 4rem 0 0 0;
+  width: min(40rem, calc(100vw - 5rem));
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  flex: 1;
+}
