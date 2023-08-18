@@ -7,14 +7,14 @@
   border: solid;
   padding: 1rem;
   border-width: 0px 0px 1px 0px;
-  border-color: lightgrey;
+  border-color: #e1bda9;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
 }
 
 .drop-container:hover {
-  box-shadow: rgb(255, 255, 255) 0px 1px 4px;
+  box-shadow: rgb(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .drop-header {
@@ -58,6 +58,12 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+}
+
+.drop-reactions div:hover {
+  background-color:#ede2c9;
 }
 
 .drop-reactions div p {

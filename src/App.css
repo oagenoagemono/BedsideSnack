@@ -7,22 +7,26 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .App-container {
-  color: white;
-  background-color: #282c34;
+  color: black;
+  background-color: #FFF8E4;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 100%;
 }
 
 main {
   padding: 4rem 0 0 0;
-  width: min(40rem, calc(100vw - 5rem));
+  width: 40rem;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  border: solid;
+  border-color: #e1bda9;
+  border-width: 0 1px;
 }
 
 .empty {

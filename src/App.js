@@ -10,6 +10,8 @@ import {React} from 'react';
 import {Drop, Header, Form, Nav, Trend} from './components';
 import './App.css';
 
+
+
 export default function App() {
   const drops = [{
     id: "Something",
@@ -17,24 +19,28 @@ export default function App() {
     time: Date.now(),
     message: "Hello!",
     reactions: {
-      replies: [],
+      replies: [],  //List of ids
       repostNum: 0,
-      liked: true,
+      liked: false,
       likeNum: 0,
     }
   }];
   
   return (
-    <>
-      <div className='App-container'>
-        <Nav />
-        <main>
-          <Form/>
-          {drops.map(item => <Drop key={item.id} detail={item} />)}
-        </main>
-        <Trend />
-      </div>
-      <Header/>
-    </>
+    <div className='App-container'>
+      <Nav />
+      <main>
+        <Header/>
+        <Form/>
+        {drops.map((item, idx) => 
+          <Drop key={item.id} 
+          detail={item} 
+          onClickLike={() => {
+            drops[idx].reactions.liked = !item.reactions.liked;
+            console.log(item.reactions.liked);
+            }}/>)}
+      </main>
+      <Trend />
+    </div>
   );
 }

@@ -10,13 +10,13 @@
   min-height: 8rem;
   border: none;
   resize: none;
-  color: white;
-  background-color: #282c34;
+  color: black;
+  background-color: #FFF8E4;
   padding-bottom: 1rem;
 }
 
 .form-message::placeholder {
-  color: lightgrey;
+  color: #3A2E39;
 }
 
 .form-button {

@@ -1,17 +1,17 @@
 nav {
-  background-color: rgba(197,140,117,1);
   color: black;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   min-height: 100vh;
-  height: 100%;
+  width: 4rem;
 }
 
 .expanded {
   width: 14rem;
 }
 
-.shrunk {
-  width: 4rem;
+.nav-container {
+  display: flex;
+  position: fixed;
 }

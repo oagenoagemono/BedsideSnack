@@ -1,3 +1,5 @@
+import {} from "react-icons/rx";
+
 import {convertRemToPixels, useWindowDimensions} from "../../utils/index";
 import './nav.css';
 
@@ -10,17 +12,11 @@ import './nav.css';
 export default function Nav() {
   const { height, width } = useWindowDimensions();
   
-  const expanded = (
-    <nav className="expanded">
-      Stuff?
-    </nav> 
-  );
-  
-  const shrunk = (
-    <nav className="shrunk">
-      Stuff?
-    </nav> 
-  );
+  const expanded = width > convertRemToPixels(68);
 
-  return width > convertRemToPixels(68) ? expanded : shrunk;
+  return (
+    <nav className={expanded ? "expanded" : undefined}>
+      
+    </nav>
+  );
 }
