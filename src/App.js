@@ -38,13 +38,21 @@ const router = createBrowserRouter([
             {drops.map((item, idx) => 
               <Drop key={item.id} detail={item} />)}
           </>),
-      }
+      },
+      {
+        path: "/",
+        element: (
+          <>
+            <Form/>
+            {drops.map((item, idx) => 
+              <Drop key={item.id} detail={item} />)}
+          </>),
+      },
     ],
   },
 ]);
 
 function Main () {
-  
   return (
     <div className='App-container'>
       <Nav />
