@@ -7,40 +7,58 @@
  */
 
 import {React} from 'react';
-import {Drop, Header, Form, Nav, Trend} from './components';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'; 
+import {ErrorPage, Drop, Header, Form, Nav, Trend} from './components';
 import './App.css';
 
+const drops = [{
+  id: "Something",
+  username: "Somebody",
+  time: Date.now(),
+  message: "Hello!",
+  reactions: {
+    replies: [],  //List of ids
+    repostNum: 0,
+    liked: false,
+    likeNum: 0,
+  }
+}];
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/home",
+        element: (
+          <>
+            <Form/>
+            {drops.map((item, idx) => 
+              <Drop key={item.id} detail={item} />)}
+          </>),
+      }
+    ],
+  },
+]);
 
-export default function App() {
-  const drops = [{
-    id: "Something",
-    username: "Somebody",
-    time: Date.now(),
-    message: "Hello!",
-    reactions: {
-      replies: [],  //List of ids
-      repostNum: 0,
-      liked: false,
-      likeNum: 0,
-    }
-  }];
+function Main () {
   
   return (
     <div className='App-container'>
       <Nav />
       <main>
         <Header/>
-        <Form/>
-        {drops.map((item, idx) => 
-          <Drop key={item.id} 
-          detail={item} 
-          onClickLike={() => {
-            drops[idx].reactions.liked = !item.reactions.liked;
-            console.log(item.reactions.liked);
-            }}/>)}
+        <Outlet />
       </main>
       <Trend />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <RouterProvider router={router} />
   );
 }

@@ -1,0 +1,14 @@
+:root {
+  --pc-1: midnightblue;
+  --bc-1: white;
+  --hc-1: aliceblue;
+  --fc-1: black;
+  --oc-1: lightgray;
+  
+  
+  --primary-color: var(--pc-1);
+  --background-color: var(--pc-1);
+  --highlight-color: var(--hc-1);
+  --font-color: var(--pc-1);
+  --outline-color: var(--oc-1);
+}

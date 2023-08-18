@@ -7,7 +7,7 @@
   font-size: 1rem;
   height: 4rem;
   width: 40rem;
-  color: #CD7A4B;
+  color: var(--primary-color);
   text-align: center;
   position: fixed;
   top: 0;
