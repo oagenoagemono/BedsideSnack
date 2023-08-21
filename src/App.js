@@ -16,13 +16,10 @@ const drops = [{
   username: "Somebody",
   time: Date.now(),
   message: "Hello!",
-  reactions: {
-    replies: [],  //List of ids
-    repostNum: 0,
-    liked: false,
-    likeNum: 0,
-  }
-}];
+  replies: [],  //List of ids
+  reposters: [],
+  likers: [],
+},];
 
 const router = createBrowserRouter([
   {
@@ -30,15 +27,6 @@ const router = createBrowserRouter([
     element: <Main />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "/home",
-        element: (
-          <>
-            <Form/>
-            {drops.map((item, idx) => 
-              <Drop key={item.id} detail={item} />)}
-          </>),
-      },
       {
         path: "/",
         element: (
