@@ -8,22 +8,46 @@
 .form-message {
   width: 100%;
   min-height: 8rem;
-  border: none;
+  border-width: 0 0 1px 0;
+  border-color: color-mix(in srgb, var(--font-color) 15%, transparent);
   resize: none;
-  color: black;
-  background-color: #FFF8E4;
+  outline: none;
+  color: var(--font-color);
+  background-color: var(--background-color);
   padding-bottom: 1rem;
 }
 
 .form-message::placeholder {
-  color: #3A2E39;
+  color: color-mix(in srgb, var(--font-color) 60%, var(--background-color));
+}
+
+
+.form-other {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .form-button {
-  height: 1.5rem;
+  margin: 1rem;
+  padding: 0 0.5rem;
+  height: 2rem;
   font-size: 1rem;
   border: none;
-  border-radius: 0.2rem;
-  background-color: rgb(2,0,44);;
-  color: white;
+  border-radius: 1rem;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  transition-property: background-color;
+  transition-timing-function: ease-in-out;
+  transition-duration: 200ms;
 }
+
+.form-button:disabled {
+  background-color: color-mix(in srgb, var(--primary-color) 50%, var(--background-color));
+}
+
+.form-button:enabled:hover {
+  background-color: color-mix(in srgb, var(--primary-color) 80%, var(--font-color));
+}
+

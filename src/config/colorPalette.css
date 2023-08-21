@@ -1,14 +1,11 @@
 :root {
-  --pc-1: midnightblue;
+  --pc-1: rgb(200, 73, 0);
   --bc-1: white;
   --hc-1: aliceblue;
-  --fc-1: black;
-  --oc-1: lightgray;
-  
+  --fc-1: black;  
   
   --primary-color: var(--pc-1);
-  --background-color: var(--pc-1);
+  --background-color: var(--bc-1);
   --highlight-color: var(--hc-1);
-  --font-color: var(--pc-1);
-  --outline-color: var(--oc-1);
+  --font-color: var(--fc-1);
 }

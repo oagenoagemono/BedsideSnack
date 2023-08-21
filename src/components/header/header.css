@@ -1,5 +1,5 @@
 .App-header {
-  background: #fff8e4c1;
+  background-color: color-mix(in srgb, var(--background-color) 60%, transparent);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11,4 +11,5 @@
   text-align: center;
   position: fixed;
   top: 0;
+  backdrop-filter: blur(3px);
 }

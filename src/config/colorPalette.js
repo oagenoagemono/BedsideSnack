@@ -4,5 +4,4 @@ function setTheme(num) {
   root.style.setProperty('--background-color', `var(--bc-${num})`);
   root.style.setProperty('--highlight-color', `var(--hc-${num})`);
   root.style.setProperty('--font-color', `var(--fc-${num})`);
-  root.style.setProperty('--outline-color', `var(--oc-${num})`);
 }
