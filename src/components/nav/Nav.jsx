@@ -1,4 +1,4 @@
-import {} from "react-icons/rx";
+import { RxHome } from "react-icons/rx";
 
 import {convertRemToPixels, useWindowDimensions} from "../../utils/index";
 import './nav.css';
@@ -13,10 +13,14 @@ export default function Nav() {
   const { height, width } = useWindowDimensions();
   
   const expanded = width > convertRemToPixels(68);
+  const classes = expanded ? "nav-container expanded" : "nav-container";
 
   return (
-    <nav className={expanded ? "expanded" : undefined}>
-      
-    </nav>
+    <div className={classes}>
+      <nav className={expanded ? "expanded" : ""}>
+        <button ><RxHome /> {expanded ? <p>Home</p> : ""}</button>
+        
+      </nav>
+    </div>
   );
 }

@@ -41,13 +41,11 @@ function getElapsed(elapsed) {
   return `${Math.round(elapsed)} days`;
 }
 
-export default function Drop({detail, onClickLike}) {
+export default function Drop({detail}) {
   const elapsed = (Date.now() - new Date(detail.time)) / 1000;
   const [liked, toggleLike] = useReducer((val, action) => {
     return !val;
-  }, detail.reactions.liked);
-  const likeWithout = detail.reactions.liked ? 
-    detail.reactions.likeNum - 1 : detail.reactions.likeNum;
+  }, false);
   
   return (
     <div className='drop-container'>
@@ -61,19 +59,19 @@ export default function Drop({detail, onClickLike}) {
       <p className='drop-message'>{detail.message}</p>
       <div className='drop-reactions'>
         <div onClick={onClickReply}>
-          <RxChatBubble/>
-          <p>{detail.reactions.replies.length}</p>
+          <div><RxChatBubble/></div>
+          <p>{detail.replies.length}</p>
         </div>
         <div onClick={onClickRepost}>
-          <RxSymbol/>
-          <p>{detail.reactions.repostNum}</p>
+          <div><RxSymbol/></div>
+          <p>{detail.reposters.length}</p>
         </div>
         <div onClick={toggleLike}>
-          {liked ? <RxStarFilled/> : <RxStar/>}
-          <p>{liked ? likeWithout + 1 : likeWithout}</p>
+          <div>{liked ? <RxStarFilled/> : <RxStar/>}</div>
+          <p>{detail.likers.length}</p>
         </div>
         <div onClick={onClickShare}>
-          <RxShare2/>
+          <div><RxShare2/></div>
         </div>
       </div>
     </div>
