@@ -1,11 +1,17 @@
 :root {
-  --pc-1: rgb(200, 73, 0);
-  --bc-1: white;
-  --hc-1: aliceblue;
-  --fc-1: black;  
-  
-  --primary-color: var(--pc-1);
-  --background-color: var(--bc-1);
-  --highlight-color: var(--hc-1);
-  --font-color: var(--fc-1);
+  --text: #3d1f15;
+  --background: #ffffff;
+  --primary: #ecab6e;
+  --secondary: #ffeccc;
+  --accent: #7b2d00;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #f1e3e3;
+    --background: #190f0d;
+    --primary: #faddcc;
+    --secondary: #dbbaa8;
+    --accent: #61362d;
+  }
 }

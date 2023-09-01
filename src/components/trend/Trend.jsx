@@ -9,7 +9,7 @@ import "./trend.css"
 export default function Trend() {
   const { height, width } = useWindowDimensions();
 
-  return width > convertRemToPixels(58) ? 
+  return width > convertRemToPixels(60) ? 
   (
     <div className="trend-container">
       Stuff?

@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--background);
+}
+
+.container > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty {
+  background: var(--background);
+  background: linear-gradient(225deg, var(--background) 0%, var(--primary) 68%, var(--secondary) 100%);
+}
+
+.empty p {
+  color: var(--background);
+  mix-blend-mode: color-dodge;
+}
+
+.login-buttons > * {
+  margin: 3rem 0;
+}
+
+.login-buttons button {
+  width: 12rem;
+  background-color: var(--primary);
+  color: var(--background);
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.2rem;
+  transition: background-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+.login-buttons button:hover {
+  background-color: color-mix(in srgb, var(--primary) 70%, transparent);
+}
+
+.email {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 6px color-mix(in srgb, var(--text) 40%, transparent);
+}
+
+.email > * {
+  margin: 0.5rem 0;
+}
