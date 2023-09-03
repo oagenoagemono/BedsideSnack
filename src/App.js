@@ -17,6 +17,8 @@ import './App.css';
 import { isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth';
 
 
+
+
 function Container({userData}) {
   return (
     <div className='App-container'>
@@ -54,20 +56,12 @@ export default function App() {
       children: [
         {
           path: "/",
-          element: <Home/>,
+          element: <Home user={user}/>,
           loader: async () => {
             if (!user)
               return redirect("/login");
-            const postRef = collection(db, "posts");
-            try {
-              const data = await getDocs(postRef);
-              return data.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-              }));
-            } catch (err){
-              console.error(err);
-            }
+            else
+              return null;
           }
         },
       ],
@@ -75,25 +69,6 @@ export default function App() {
       path: "/login",
       element: <Login/>,
       errorElement: <ErrorPage />,
-      loader: () => {
-        if (user)
-          return redirect("/");
-        // Is the link valid?
-        if (isSignInWithEmailLink(auth, window.location.href)) {
-          let email = localStorage.getItem("emailForSignIn");
-          if (!email)
-            email = window.prompt("Please provide your email");
-          try {
-            signInWithEmailLink(auth, email, window.location.href);
-            // successfully logged in
-            window.localStorage.removeItem("emailForSignIn")
-            return redirect("/");
-          } catch (err) {
-            console.error(err);
-          }
-        }
-        return null;
-      }
     },
   ]);
   

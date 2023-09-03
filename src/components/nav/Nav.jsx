@@ -1,9 +1,11 @@
 import { RxCookie, RxHome, RxMagnifyingGlass, RxPencil2, RxPerson } from "react-icons/rx";
 
-import {convertRemToPixels, useWindowDimensions} from "../../utils/index";
-import './nav.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useReducer, useRef, useState } from "react";
+import { signOut } from "firebase/auth";
+import {convertRemToPixels, useWindowDimensions} from "../../utils/index";
+import {auth} from "../../config/firebase";
+import './nav.css';
 
 /**
  * Generates a navigation bar.
@@ -15,6 +17,7 @@ export default function Nav({userData}) {
   const { height, width } = useWindowDimensions();
   const [open, setOpen] = useState(false);
   const logoutRef = useRef();
+  const navigate = useNavigate();
   
   const expanded = width > convertRemToPixels(66);
   
@@ -23,9 +26,9 @@ export default function Nav({userData}) {
       if (open && !logoutRef.current?.contains(e.target))
         setOpen(false);
     };
-    document.addEventListener("mousedown", handleExternalClick);
+    document.addEventListener("mouseup", handleExternalClick);
     return () => {
-      document.removeEventListener("mousedown", handleExternalClick);
+      document.removeEventListener("mouseup", handleExternalClick);
     };
   });
 
@@ -51,7 +54,14 @@ export default function Nav({userData}) {
         <div 
           className={open ? "logout" : "hidden"}
           ref={logoutRef}>
-          <button onClick={()=>{}}>Log Out</button>
+          <button onClick={()=>{
+            try {
+              signOut(auth);
+              navigate("/login");
+            } catch (err) {
+              console.error(err);
+            }
+          }}>Log Out</button>
         </div>
       </nav>
     </div>

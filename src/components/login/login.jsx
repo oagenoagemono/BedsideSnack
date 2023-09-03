@@ -1,17 +1,43 @@
 import { auth } from "../../config/firebase";
 import { useEffect, useRef, useState } from "react";
-import { redirect } from "react-router-dom";
-import { isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink } from "firebase/auth";
-
 import "./login.css"
+import { useAuthState, useSendSignInLinkToEmail } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
 
 
 /**
  * @returns a login menu
  */
-export default function Login({user}) {
+export default function Login() {
+  const [user] = useAuthState(auth);
   const email = useRef("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const [sendSignInLinkToEmail, sending, error] = useSendSignInLinkToEmail(auth);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    } else {
+      // Is the link valid?
+      if (isSignInWithEmailLink(auth, window.location.href)) {
+        let email = localStorage.getItem("emailForSignIn");
+        if (!email) {
+          email = window.prompt("Please provide your email");
+        }
+        console.log(email);
+        signInWithEmailLink(auth, email, window.location.href)
+          .then((result) => {
+            window.localStorage.removeItem("emailForSignIn")
+            navigate("/");
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+    }
+  }, []);
   
   const emailActionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for this
@@ -24,14 +50,12 @@ export default function Login({user}) {
   const signInWithEmail = async (email) => {
     // save the email so that we can verify when the user comes back
     window.localStorage.setItem('emailForSignIn', email);
-    try {
-      await sendSignInLinkToEmail(auth, email, emailActionCodeSettings);
-      console.log(auth.currentUser);
+    const success = await sendSignInLinkToEmail(email, emailActionCodeSettings);
+    if (success) {
       setMessage("Email sent!");
-    } catch (error) {
-      console.error(error);
+    } else {
       setMessage("An error occurred. Please try again.");
-    } 
+    }
   }
   
   return (
@@ -51,11 +75,14 @@ export default function Login({user}) {
             type="email" 
             placeholder="Enter email"
             required/>
-          <button >Log In</button>
+          <button >Send Email Link</button>
           <p >{message}</p>
         </form>
         <button >Log in with Google </button>
       </div>
+      <dialog open={sending}>
+        Sending...
+      </dialog>
     </div>
   );
 }

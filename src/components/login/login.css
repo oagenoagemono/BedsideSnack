@@ -16,7 +16,7 @@
 
 .empty {
   background: var(--background);
-  background: linear-gradient(225deg, var(--background) 0%, var(--primary) 68%, var(--secondary) 100%);
+  background: linear-gradient(225deg, var(--background) 0%, var(--primary) 68%, var(--accent) 100%);
 }
 
 .empty p {
@@ -56,4 +56,13 @@
 
 .email > * {
   margin: 0.5rem 0;
+}
+
+.email > input {
+  border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+  border-width: 1px;
+  border-radius: 0.5rem;
+  outline: none;
+  padding: 0.3rem;
+  width: 11rem;
 }
